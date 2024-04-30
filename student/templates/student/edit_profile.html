@@ -1,0 +1,80 @@
+{% extends "courses_cloud/layout.html" %}
+
+{% block title %}
+    Edit Profile
+{% endblock %}
+
+
+{% block css %}
+
+{% endblock %}
+
+
+{% block body %}
+    <h1 class="p-3 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3">
+        Edit Profile
+    </h1>
+    {% if error_message %}
+        <div>
+            {{error_message}}
+        </div>
+    {% endif %}
+    <div>
+        <!-- <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            {{ form.first_name.label_tag }}
+            {{ form.first_name }}
+            {{ form.last_name.label_tag }}
+            {{ form.last_name }}
+            {{ form.email.label_tag }}
+            {{ form.email }}
+            {{ form.username.label_tag }}
+            {{ form.username }}
+            {{ form.password.label_tag }} 
+            {{ form.password }} 
+            {{ form.date_of_birth.label_tag }} 
+            {{ form.date_of_birth }}
+            {{ form.address.label_tag }}
+            {{ form.address }}
+            {{ form.city_town.label_tag }}
+            {{ form.city_town }}
+            {{ form.country.label_tag }}
+            {{ form.country }}
+            {{ form.photo.label_tag }}
+            {{ form.photo }}
+            <br />
+
+            <button type="submit" class="btn btn-primary">Save</button>
+        </form> --> 
+
+
+
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <label for="id_username">Username:</label>
+            <input type="text" name="username" value="{{ student.user.username }}" class="form-control my-2" placeholder="Username" id="id_username" disabled>
+
+            <label for="id_email">Email:</label>
+            <input type="text" name="email" value="{{ student.user.email }}" class="form-control my-2" placeholder="Email" required="" id="id_email">
+
+            <label for="id_first_name">First name:</label>
+            <input type="text" name="first_name" value="{{ student.user.first_name }}" class="form-control my-2" placeholder="First Name" required="" id="id_first_name">
+            <label for="id_last_name">Last name:</label>
+            <input type="text" name="last_name" value="{{ student.user.last_name }}" class="form-control my-2" placeholder="Last Name" required="" id="id_last_name">
+            <label for="id_date_of_birth">Date of birth:</label>
+            <input type="date" name="date_of_birth" value="{{ student.date_of_birth|date:'Y-m-d' }}" class="form-control my-2" placeholder="Date of Birth" id="id_date_of_birth">
+            <label for="id_address">Address:</label>
+            <input type="text" name="address" value="{{ student.address }}" class="form-control my-2" placeholder="Address" maxlength="255" id="id_address">
+            <label for="id_city_town">City town:</label>
+            <input type="text" name="city_town" value="{{ student.city_town }}" class="form-control my-2" placeholder="City" maxlength="150" id="id_city_town">
+            <label for="id_country">Country:</label>
+            <input type="text" name="country" value="{{ student.country }}" class="form-control my-2" placeholder="Country" maxlength="150" id="id_country">
+            <label for="id_photo">Photo:</label>
+            <input type="file" name="photo" class="form-control-file my-2" value="{{ student.photo }}" placeholder="Photo" accept="image/png, image/jpeg, image/jpg" id="id_photo">
+            <br>
+            <button type="submit" class="btn btn-primary">Save</button>
+        </form>
+    </div>
+{% endblock %}

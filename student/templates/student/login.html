@@ -1,0 +1,35 @@
+{% extends "courses_cloud/layout.html" %}
+
+{% block title %}
+    Login
+{% endblock %}
+
+
+{% block css %}
+
+{% endblock %}
+
+
+{% block body %}
+    <h1 class="p-3 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3">
+        Login
+    </h1>
+    {% if error_message %}
+        <div>
+            {{error_message}}
+        </div>
+    {% endif %}
+    <div>
+        <form method="post">
+            {% csrf_token %}
+            <!-- {{ form.username.label_tag }} -->
+            {{ form.username }}
+            <!-- {{ form.password.label_tag }} -->
+            {{ form.password }}
+            <p>Forgot password?
+                <a href="{% url 'passwordResetEmail' %}">Reset Password</a>
+            </p>
+            <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+    </div>
+{% endblock %}

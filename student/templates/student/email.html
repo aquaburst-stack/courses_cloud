@@ -1,0 +1,19 @@
+{% autoescape off %}
+
+Hello there!
+
+Please click on the securely encrypted verification link below to confirm your email address and activate your account
+with ThoughtfullAIResponse.
+
+<a href="{{ request.META.HTTP_HOST }}/accounts/emailverification/{{ id }}/{{ token }}">
+    http://{{ request.META.HTTP_HOST }}/accounts/emailverification/{{ id }}/{{ token }}
+</a>
+
+Feel free to get in touch with the team at team@thoughtfullairesponse.com for assistance, questions or concerns.
+
+Thanks, and best regards
+
+Team
+ThoughtfullAIResponse
+
+{% endautoescape %}

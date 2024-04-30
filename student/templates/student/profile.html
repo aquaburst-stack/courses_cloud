@@ -1,0 +1,49 @@
+{% extends "courses_cloud/layout.html" %}
+
+{% block title %}
+    Profile
+{% endblock %}
+
+
+{% block css %}
+
+{% endblock %}
+
+
+{% block body %}
+    <h1 class="p-3 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3">
+        Profile
+    </h1>
+    {% if error_message %}
+        <div>
+            {{error_message}}
+        </div>
+    {% endif %}
+    <div>
+        <p><b>First Name:</b> {{ student.user.first_name }}</p>
+        <p><b>Last Name:</b> {{ student.user.last_name }}</p>
+        <p><b>Email:</b> {{ student.user.email }}</p>
+        <p><b>Username:</b> {{ student.user.username }}</p>
+        <p><b>Date of Birth:</b> {{ student.date_of_birth }}</p>
+        <p><b>Address:</b> {{ student.address }}</p>
+        <p><b>City/Town:</b> {{ student.city_town }}</p>
+        <p><b>Country:</b> {{ student.country }}</p>
+        <p>
+            <b>Photo:</b>
+            <img src="{{ student.photo.url }}" width="250px" alt="student-picture" />
+        </p>
+        
+        <p class="my-5">
+            <span class="mx-3">
+                <a href="{% url 'edit_profile' %}">
+                    <button class="btn btn-secondary">Edit Profile</button>
+                </a>
+            </span>
+            <span class="mx-3">
+                <a href="{% url 'change_password' %}">
+                    <button class="btn btn-secondary">Change Password</button>
+                </a>
+            </span>
+        </p>
+    </div>
+{% endblock %}

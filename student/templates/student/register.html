@@ -1,0 +1,51 @@
+{% extends "courses_cloud/layout.html" %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+
+{% block css %}
+
+{% endblock %}
+
+
+{% block body %}
+    <h1 class="p-3 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3">
+        Register
+    </h1>
+    {% if error_message %}
+        <div>
+            {{error_message}}
+        </div>
+    {% endif %}
+    <div>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <!-- {{ form.first_name.label_tag }} -->
+            {{ form.first_name }}
+            <!-- {{ form.last_name.label_tag }} -->
+            {{ form.last_name }}
+            <!-- {{ form.email.label_tag }} -->
+            {{ form.email }}
+            <!-- {{ form.username.label_tag }} -->
+            {{ form.username }}
+            <!-- {{ form.password.label_tag }} -->
+            {{ form.password }}
+            <!-- {{ form.date_of_birth.label_tag }} -->
+            {{ form.date_of_birth }}
+            <!-- {{ form.address.label_tag }} -->
+            {{ form.address }}
+            <!-- {{ form.city_town.label_tag }} -->
+            {{ form.city_town }}
+            <!-- {{ form.country.label_tag }} -->
+            {{ form.country }}
+            <!-- {{ form.photo.label_tag }} -->
+            {{ form.photo }}
+            <br />
+
+            <button type="submit" class="btn btn-primary">Register</button>
+        </form>
+    </div>
+{% endblock %}
