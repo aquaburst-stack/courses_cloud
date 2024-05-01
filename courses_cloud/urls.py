@@ -22,6 +22,7 @@ from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', include('module.urls')),
     path('account_management/', include('student.urls')),
 ]
 
