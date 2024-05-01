@@ -1,7 +1,7 @@
 {% extends "courses_cloud/layout.html" %}
 
 {% block title %}
-    Contact Us
+    All Modules
 {% endblock %}
 
 
@@ -16,14 +16,32 @@
     </h1>
     <div>
         <ul>
-            {% for module in modules %}
+            {% for data in data_obj %}
                 <li>
                     <p>
-                        <span>{{module.name}}</span>
-                        
-                        <span>
-                            <button class="btn btn-primary"></button>
+                        <span class="mx-3">
+                            <a href="{% url 'module' %}?code={{ data.module.code }}">{{ data.module.name }}</a>
                         </span>
+                        
+                        {% if request.user.is_authenticated and group %}
+                            {% if data.status %}
+                                <span class="mx-3">
+                                    <a href="{% url 'list_modules' %}?register=0&code={{data.module.code}}">
+                                        <button class="btn btn-primary">Unregister</button>
+                                    </a>
+                                </span>
+                                
+                                <span class="mx-3">
+                                    <img src="{{student.photo.url}}" alt="student image" height="50" width="50">
+                                </span>
+                            {% else %}
+                                {% if data.module.availability == 'Open' %}
+                                    <a href="{% url 'list_modules' %}?register=1&code={{data.module.code}}">
+                                        <button class="btn btn-primary">Register</button>
+                                    </a>
+                                {% endif %}
+                            {% endif %}
+                        {% endif %}
                     </p>
                 </li>
             {% empty %}

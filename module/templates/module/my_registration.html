@@ -1,0 +1,41 @@
+{% extends "courses_cloud/layout.html" %}
+
+{% block title %}
+    My Registerd Modules
+{% endblock %}
+
+
+{% block css %}
+
+{% endblock %}
+
+
+{% block body %}
+
+
+    <div>
+        <h1 class="p-3 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3">
+            My Registered Modules
+        </h1>
+
+        <ul>
+            {% for register in registered %}
+                <li class="my-2">
+                    <a href="{% url 'module' %}?code={{register.module.code}}">
+                        {{register.module.name}}
+                    </a>
+
+                    <span class="mx-4">
+                        <a href="{% url 'my_registration' %}?register=1&code={{register.module.code}}">
+                            <button class="btn btn-primary">Unregister</button>
+                        </a>
+                    </span>
+                    
+                </li>
+                
+            {% empty %}
+                <li>No Registered Modules.</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

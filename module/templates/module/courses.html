@@ -1,0 +1,49 @@
+{% extends "courses_cloud/layout.html" %}
+
+{% block title %}
+    All Courses
+{% endblock %}
+
+
+{% block css %}
+
+{% endblock %}
+
+
+{% block body %}
+
+
+    <div>
+        {% if is_all %}
+        <h1 class="p-3 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3">
+            Courses
+        </h1>
+            <ul>
+                {% for course in courses %}
+                    <li>
+                        <a href="{% url 'courses' %}?id={{course.id}}">
+                            {{ course.name }}
+                        </a>
+                    </li>
+                    {% empty %}
+                    <li>No course available yet.</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+        <h1 class="p-3 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3">
+            Course
+        </h1>
+            <h1>{{ courses.name}}</h1>
+            <p><b>Description:</b> {{ courses.description }} </p>
+            <div>
+                <h2>Modules</h2>
+                <!-- <p>{{ modules }}</p> -->
+                {% for module in modules %}
+                    <p>
+                        <a href="{% url 'module' %}?code={{ module.code }}">{{ module.name }}</a>
+                    </p>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

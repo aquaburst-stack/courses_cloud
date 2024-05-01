@@ -12,5 +12,5 @@ urlpatterns = [
     path('password-reset', passwordResetEmail, name="passwordResetEmail"),
     # password reset link
     path('reset-password/<uidb64>/<token>', passowrdResetForm, name="passowrdResetForm"),
-
+    path('change_password', change_password, name='change_password'),
 ]

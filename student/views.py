@@ -54,55 +54,57 @@ def logout_view(request):
     return redirect('login_view')  # Redirect them to the login page, or wherever you prefer
 
 
-@login_required(login_url=reverse_lazy('login'))
 def profile(request):
-    student = Student.objects.get(user__id=request.user.id)
-    return render(request, 'student/profile.html', {'student': student})
+    if request.user.is_authenticated and request.user.groups.filter(name='Student').exists():
+        student = Student.objects.get(user__id=request.user.id)
+        return render(request, 'student/profile.html', {'student': student})
+    else:
+        return redirect('home')
 
 
-@login_required(login_url=reverse_lazy('login'))
 def edit_profile(request):
-    if request.method == 'POST':
-        photo = request.FILES if request.FILES else None
-        request_query_dict_data = request.POST
-        data = request_query_dict_data.dict()
-        # print(data)
-        student = {
-            "username": request.user.username,
-            "first_name": data['first_name'],
-            "last_name": data['last_name'],
-            "email": data['email'],
-            "date_of_birth": data['date_of_birth'],
-            "address": data['address'],
-            "city_town": data['city_town'],
-            "country": data['country']
-        }
-        student_ = Student.objects.get(user__username=request.user.username)
-        user_obj = User.objects.filter(username=request.user.username).update(
-            first_name=student['first_name'],
-            last_name=student['last_name'],
-            email=student['email'],
-        )
-        student_obj = Student.objects.filter(user__username=request.user.username).update(
-            address=student['address'],
-            date_of_birth=student['date_of_birth'],
-            city_town=student['city_town'],
-            country=student['country']
-        )
-        print(student_obj, user_obj)
-        if photo:
-            photo = photo.dict()
-            old_image = student_.photo
-            if old_image:
-                old_image_path = os.path.join(settings.MEDIA_ROOT, str(student_.photo))
-                if os.path.exists(old_image_path):
-                    os.remove(old_image_path)
-                    print("removed old image path : ", old_image_path)
-                    student_.photo = photo['photo']
-                    student_.save()
-    student = Student.objects.get(user__id=request.user.id)
-    return render(request, 'student/edit_profile.html', {'student': student})
+    if request.user.is_authenticated and request.user.groups.filter(name='Student').exists():
+        if request.method == 'POST':
+            photo = request.FILES if request.FILES else None
+            request_query_dict_data = request.POST
+            data = request_query_dict_data.dict()
+            # print(data)
+            student = {
+                "username": request.user.username,
+                "first_name": data['first_name'],
+                "last_name": data['last_name'],
+                "email": data['email'],
+                "date_of_birth": data['date_of_birth'],
+                "address": data['address'],
+                "city_town": data['city_town'],
+                "country": data['country']
+            }
+            student_ = Student.objects.get(user__username=request.user.username)
+            user_obj = User.objects.filter(username=request.user.username).update(
+                first_name=student['first_name'],
+                last_name=student['last_name'],
+                email=student['email'],
+            )
+            student_obj = Student.objects.filter(user__username=request.user.username).update(
+                address=student['address'],
+                date_of_birth=student['date_of_birth'],
+                city_town=student['city_town'],
+                country=student['country']
+            )
 
+            if photo:
+                photo = photo.dict()
+                old_image = student_.photo
+                if old_image:
+                    old_image_path = os.path.join(settings.MEDIA_ROOT, str(student_.photo))
+                    if os.path.exists(old_image_path):
+                        os.remove(old_image_path)
+                        student_.photo = photo['photo']
+                        student_.save()
+        student = Student.objects.get(user__id=request.user.id)
+        return render(request, 'student/edit_profile.html', {'student': student})
+    else:
+        return redirect('home')
 
 
 
