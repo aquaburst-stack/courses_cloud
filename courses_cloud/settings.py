@@ -80,13 +80,17 @@ WSGI_APPLICATION = 'courses_cloud.wsgi.application'
 
 DATABASES = {
     'default': {
-        "ENGINE": "django.db.backends.mysql",
-        'NAME': config('MYSQL_DB', cast=str),
-        'USER': config('MYSQL_USER', cast=str),
-        'PASSWORD': config('MYSQL_PASS', cast=str),
-        'HOST': config('MYSQL_HOST', cast=str),
-        'PORT': config('MYSQL_PORT', cast=str),
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
+    # 'default': {
+    #     "ENGINE": "django.db.backends.mysql",
+    #     'NAME': config('MYSQL_DB', cast=str),
+    #     'USER': config('MYSQL_USER', cast=str),
+    #     'PASSWORD': config('MYSQL_PASS', cast=str),
+    #     'HOST': config('MYSQL_HOST', cast=str),
+    #     'PORT': config('MYSQL_PORT', cast=str),
+    # }
 }
 
 
