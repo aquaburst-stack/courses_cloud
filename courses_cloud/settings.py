@@ -139,15 +139,42 @@ DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = 'static/'
+# STATIC_URL = 'static/'
 
-# Absolute filesystem path to the directory that will hold static files
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# # Absolute filesystem path to the directory that will hold static files
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# MEDIA_URL = '/media/'
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+AZURE_SA_NAME = config('AZURE_SA_NAME', cast=str)
+AZURE_SA_KEY = config('AZURE_SA_KEY', cast=str)
+
+STORAGES = {
+    "default": {
+        "BACKEND": "storages.backends.azure_storage.AzureStorage",
+        "OPTIONS": {
+            "account_name": AZURE_SA_NAME,
+            "account_key": AZURE_SA_KEY,
+            "azure_container": "media",
+        },
+    },
+    "staticfiles": {
+        "BACKEND": "storages.backends.azure_storage.AzureStorage",
+        "OPTIONS": {
+            "account_name": AZURE_SA_NAME,
+            "account_key": AZURE_SA_KEY,
+            "azure_container": "static",
+        },
+    },
+}
+
+STATIC_URL = f'https://{AZURE_SA_NAME}.blob.core.windows.net/static/'
+
+MEDIA_URL = f'https://{AZURE_SA_NAME}.blob.core.windows.net/media/'
