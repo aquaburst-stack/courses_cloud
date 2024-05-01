@@ -6,7 +6,8 @@ from student.models import Student
 # Create your views here.
 
 def home(request):
-    return render(request, 'module/home.html')
+    courses = Course.objects.all().order_by('-id')
+    return render(request, 'module/home.html', {'courses': courses})
 
 
 def about_us(request):

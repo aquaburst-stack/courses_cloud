@@ -11,39 +11,46 @@
 
 
 {% block body %}
-
-
-    <div>
-        {% if is_all %}
-        <h1 class="p-3 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3">
-            Courses
-        </h1>
-            <ul>
-                {% for course in courses %}
-                    <li>
-                        <a href="{% url 'courses' %}?id={{course.id}}">
-                            {{ course.name }}
-                        </a>
-                    </li>
-                    {% empty %}
-                    <li>No course available yet.</li>
-                {% endfor %}
-            </ul>
-        {% else %}
-        <h1 class="p-3 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3">
-            Course
-        </h1>
-            <h1>{{ courses.name}}</h1>
-            <p><b>Description:</b> {{ courses.description }} </p>
-            <div>
-                <h2>Modules</h2>
-                <!-- <p>{{ modules }}</p> -->
-                {% for module in modules %}
-                    <p>
-                        <a href="{% url 'module' %}?code={{ module.code }}">{{ module.name }}</a>
-                    </p>
-                {% endfor %}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6 col-md-8 col-sm-12 mx-auto mt-5">
+            <div class="border border-secondary-subtle rounded-3 p-5">
+                <div>
+                    {% if is_all %}
+                    <h1 class="p-3 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3 ">
+                        Courses
+                    </h1>
+                        <ul>
+                            {% for course in courses %}
+                                <li>
+                                    <a href="{% url 'courses' %}?id={{course.id}}">
+                                        {{ course.name }}
+                                    </a>
+                                </li>
+                                {% empty %}
+                                <li>No course available yet.</li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                    <h1 class="p-3 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3">
+                        {{ courses.name}}
+                    </h1>
+                        <!-- <h1>{{ courses.name}}</h1> -->
+                        <p><b>Description:</b> {{ courses.description }} </p>
+                        <div>
+                            <h2>Modules</h2>
+                            <!-- <p>{{ modules }}</p> -->
+                            {% for module in modules %}
+                                <p>
+                                    <a href="{% url 'module' %}?code={{ module.code }}">{{ module.name }}</a>
+                                </p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
             </div>
-        {% endif %}
+        </div>
     </div>
+</div>
+
 {% endblock %}

@@ -11,42 +11,52 @@
 
 
 {% block body %}
-    <h1 class="p-3 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3">
-        Modules
-    </h1>
-    <div>
-        <ul>
-            {% for data in data_obj %}
-                <li>
-                    <p>
-                        <span class="mx-3">
-                            <a href="{% url 'module' %}?code={{ data.module.code }}">{{ data.module.name }}</a>
-                        </span>
-                        
-                        {% if request.user.is_authenticated and group %}
-                            {% if data.status %}
-                                <span class="mx-3">
-                                    <a href="{% url 'list_modules' %}?register=0&code={{data.module.code}}">
-                                        <button class="btn btn-primary">Unregister</button>
-                                    </a>
-                                </span>
-                                
-                                <span class="mx-3">
-                                    <img src="{{student.photo.url}}" alt="student image" height="50" width="50">
-                                </span>
-                            {% else %}
-                                {% if data.module.availability == 'Open' %}
-                                    <a href="{% url 'list_modules' %}?register=1&code={{data.module.code}}">
-                                        <button class="btn btn-primary">Register</button>
-                                    </a>
-                                {% endif %}
-                            {% endif %}
-                        {% endif %}
-                    </p>
-                </li>
-            {% empty %}
-                <li>Currently no modules.</li>
-            {% endfor %}
-        </ul>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6 col-md-8 col-sm-12 mx-auto mt-5 text-center">
+            <div class="border border-secondary-subtle rounded-3 p-5">
+                <h1 class="p-3 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3">
+                    Modules
+                </h1>
+                <div>
+                    
+                        {% for data in data_obj %}
+                            
+                                <p>
+                                    <span class="mx-3">
+                                        <a href="{% url 'module' %}?code={{ data.module.code }}">{{ data.module.name }}</a>
+                                    </span>
+                                    
+                                    {% if request.user.is_authenticated and group %}
+                                        {% if data.status %}
+                                            <span class="mx-3">
+                                                <a href="{% url 'list_modules' %}?register=0&code={{data.module.code}}">
+                                                    <button class="btn btn-primary">Unregister</button>
+                                                </a>
+                                            </span>
+                                            
+                                            <span class="mx-3">
+                                                <img src="{{student.photo.url}}" alt="student image" height="50" width="50">
+                                            </span>
+                                        {% else %}
+                                            {% if data.module.availability == 'Open' %}
+                                                <a href="{% url 'list_modules' %}?register=1&code={{data.module.code}}">
+                                                    <button class="btn btn-primary">Register</button>
+                                                </a>
+                                            {% endif %}
+                                        {% endif %}
+                                    {% endif %}
+                                </p>
+                            
+                        {% empty %}
+                            <p>Currently no modules.</p>
+                        {% endfor %}
+                    
+                </div>
+            </div>
+        </div>
     </div>
+</div>
+
 {% endblock %}

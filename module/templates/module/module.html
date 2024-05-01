@@ -12,51 +12,59 @@
 
 {% block body %}
 
-
-    <div>
-        <h1 class="p-3 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3">
-            {{ module.name }}
-        </h1>
-        <p>
-            <b>Name: </b>{{ module.name }}
-        </p>
-        <p>
-            <b>Code: </b>{{ module.code }}
-        </p>
-        <p>
-            <b>Credit: </b>{{ module.credit }}
-        </p>
-        <p>
-            <b>Category</b>{{ module.category }}
-        </p>
-        <p>
-            <b>Description</b> {{ module.description }}
-        </p>
-        <p>
-            <b>Availability</b> {{ module.availability }}
-        </p>
-        <p>
-            <b>Course: </b>
-            {% for tag in module.courses.all %}
-                <span>{{ tag }}</span>
-            {% endfor %}
-        </p>
-        {% if request.user.is_authenticated %}
-            {% if is_registered %}
-                <a href="{% url 'module' %}?register=0&code={{module.code}}">
-                    <button class="btn btn-primary">Unregister</button>
-                </a>
-                <br /> <br />
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-md-10 col-sm-12 mx-auto mt-5 text-center">
+            <div class="border border-secondary-subtle rounded-3 p-5 mb-5">
                 <div>
-                    <img src="{{student.photo.url}}" alt="student image" height="300" width="300">
+                    <h1 class="p-3 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3">
+                        {{ module.name }}
+                    </h1>
+                    <p>
+                        <b>Name: </b>{{ module.name }}
+                    </p>
+                    <p>
+                        <b>Code: </b>{{ module.code }}
+                    </p>
+                    <p>
+                        <b>Credit: </b>{{ module.credit }}
+                    </p>
+                    <p>
+                        <b>Category</b>{{ module.category }}
+                    </p>
+                    <p>
+                        <b>Description</b> {{ module.description }}
+                    </p>
+                    <p>
+                        <b>Availability</b> {{ module.availability }}
+                    </p>
+                    <p>
+                        <b>Course: </b>
+                        {% for tag in module.courses.all %}
+                            <span>{{ tag }}</span>
+                        {% endfor %}
+                    </p>
+                    {% if request.user.is_authenticated %}
+                        {% if is_registered %}
+                            <a href="{% url 'module' %}?register=0&code={{module.code}}">
+                                <button class="btn btn-primary">Unregister</button>
+                            </a>
+                            <br /> <br />
+                            <div>
+                                <img src="{{student.photo.url}}" alt="student image" height="300" width="300">
+                            </div>
+                        {% else %}
+                            {% if module.availability == 'Open' %}
+                                <a href="{% url 'module' %}?register=1&code={{module.code}}">
+                                    <button class="btn btn-primary">Register</button>
+                                </a>
+                            {% endif %}
+                        {% endif %}
+                    {% endif %}
                 </div>
-            {% else %}
-                {% if module.availability == 'Open' %}
-                    <a href="{% url 'module' %}?register=1&code={{module.code}}">
-                        <button class="btn btn-primary">Register</button>
-                    </a>
-                {% endif %}
-            {% endif %}
-        {% endif %}
+            </div>
+        </div>
     </div>
+</div>
+
 {% endblock %}
