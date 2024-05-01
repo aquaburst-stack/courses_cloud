@@ -1,5 +1,5 @@
 from django.shortcuts import render
-
+from module.models import ContactUs
 # Create your views here.
 
 
@@ -12,7 +12,14 @@ def about_us(request):
 
 
 def contact_us(request):
-    return render(request, 'module/contact_us.html')
+    message = None
+    if request.method == 'POST':
+        subject = request.POST.get('subject', None)
+        email = request.POST.get('email', None)
+        message = request.POST.get('message', None)
+        ContactUs.objects.create(subject=subject, email=email, message=message)
+        message = 'We have received your message. We will contact you soon.'
+    return render(request, 'module/contact_us.html', {'message': message})
 
 
 def list_modules(request):
