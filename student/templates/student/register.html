@@ -11,41 +11,49 @@
 
 
 {% block body %}
-    <h1 class="p-3 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3">
-        Register
-    </h1>
-    {% if error_message %}
-        <div>
-            {{error_message}}
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-8 col-sm-12 mx-auto text-center my-4">
+                <div class="border border-secondary-subtle rounded-3 p-5">
+                    <h1 class="p-2 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3">
+                        Register
+                    </h1>
+                    {% if error_message %}
+                        <div>
+                            {{error_message}}
+                        </div>
+                    {% endif %}
+                    <div>
+                        <form method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                
+                            <!-- {{ form.first_name.label_tag }} -->
+                            {{ form.first_name }}
+                            <!-- {{ form.last_name.label_tag }} -->
+                            {{ form.last_name }}
+                            <!-- {{ form.email.label_tag }} -->
+                            {{ form.email }}
+                            <!-- {{ form.username.label_tag }} -->
+                            {{ form.username }}
+                            <!-- {{ form.password.label_tag }} -->
+                            {{ form.password }}
+                            <!-- {{ form.date_of_birth.label_tag }} -->
+                            {{ form.date_of_birth }}
+                            <!-- {{ form.address.label_tag }} -->
+                            {{ form.address }}
+                            <!-- {{ form.city_town.label_tag }} -->
+                            {{ form.city_town }}
+                            <!-- {{ form.country.label_tag }} -->
+                            {{ form.country }}
+                            <!-- {{ form.photo.label_tag }} -->
+                            {{ form.photo }}
+                            <br />
+                
+                            <button type="submit" class="btn btn-primary px-5">Register</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
-    {% endif %}
-    <div>
-        <form method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-
-            <!-- {{ form.first_name.label_tag }} -->
-            {{ form.first_name }}
-            <!-- {{ form.last_name.label_tag }} -->
-            {{ form.last_name }}
-            <!-- {{ form.email.label_tag }} -->
-            {{ form.email }}
-            <!-- {{ form.username.label_tag }} -->
-            {{ form.username }}
-            <!-- {{ form.password.label_tag }} -->
-            {{ form.password }}
-            <!-- {{ form.date_of_birth.label_tag }} -->
-            {{ form.date_of_birth }}
-            <!-- {{ form.address.label_tag }} -->
-            {{ form.address }}
-            <!-- {{ form.city_town.label_tag }} -->
-            {{ form.city_town }}
-            <!-- {{ form.country.label_tag }} -->
-            {{ form.country }}
-            <!-- {{ form.photo.label_tag }} -->
-            {{ form.photo }}
-            <br />
-
-            <button type="submit" class="btn btn-primary">Register</button>
-        </form>
     </div>
 {% endblock %}
