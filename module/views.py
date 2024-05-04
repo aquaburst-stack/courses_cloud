@@ -17,10 +17,11 @@ def about_us(request):
 def contact_us(request):
     message = None
     if request.method == 'POST':
+        name = request.POST.get('name', None)
         subject = request.POST.get('subject', None)
         email = request.POST.get('email', None)
         message = request.POST.get('message', None)
-        ContactUs.objects.create(subject=subject, email=email, message=message)
+        ContactUs.objects.create(subject=subject, email=email, message=message, name=name)
         message = 'We have received your message. We will contact you soon.'
     return render(request, 'module/contact_us.html', {'message': message})
 

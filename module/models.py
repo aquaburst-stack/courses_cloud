@@ -4,9 +4,10 @@ from django.db import models
 
 
 class ContactUs(models.Model):
-    email = models.EmailField(db_column='email')
-    subject = models.CharField(max_length=255, null=True, blank=True, db_column='subject')
-    message = models.TextField(db_column='message', null=True, blank=True)
+    name = models.CharField(max_length=255, db_column='name', verbose_name='Name')
+    email = models.EmailField(db_column='email', verbose_name='Email')
+    subject = models.CharField(max_length=255, null=True, blank=True, db_column='subject', verbose_name='Subject')
+    message = models.TextField(db_column='message', null=True, blank=True, verbose_name='Message')
 
     class Meta:
         db_table = 'ContactUs'
@@ -22,6 +23,7 @@ class Course(models.Model):
     
     class Meta:
         db_table = 'Course'
+        ordering = ['-id']
 
 
 
@@ -44,12 +46,13 @@ class Module(models.Model):
     
     class Meta:
         db_table = 'Module'
+        ordering = ['-id']
 
 
 class Registration(models.Model):
-    student = models.ForeignKey("student.Student", on_delete=models.CASCADE, related_name='registrations')
-    module = models.ForeignKey(Module, on_delete=models.CASCADE, related_name='registrations')
-    registration_date = models.DateTimeField(auto_now_add=True)
+    student = models.ForeignKey("student.Student", on_delete=models.CASCADE, related_name='registrations', verbose_name='Student', db_column='student')
+    module = models.ForeignKey(Module, on_delete=models.CASCADE, related_name='registrations', verbose_name='Module', db_column='module')
+    registration_date = models.DateTimeField(auto_now_add=True, db_column='registration_date', verbose_name='Module Registeration Date')
 
     def __str__(self):
         return f"{self.student.user.username} registered for {self.module.name} on {self.registration_date}"
@@ -57,4 +60,4 @@ class Registration(models.Model):
     class Meta:
         db_table = 'Registration'
         unique_together = ('student', 'module')
-        ordering = ['-registration_date']
+        ordering = ['-id']

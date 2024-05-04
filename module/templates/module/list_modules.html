@@ -15,15 +15,15 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-6 col-md-8 col-sm-12 mx-auto mt-5 text-center">
-            <div class="border border-secondary-subtle rounded-3 p-5">
-                <h1 class="p-3 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3">
+            <div class="border border-secondary-subtle rounded-3 p-5 text-start">
+                <h1 class="p-3 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3 text-center">
                     Modules
                 </h1>
                 <div>
                     
                         {% for data in data_obj %}
                             
-                                <p>
+                                <p class="text-start">
                                     <span class="mx-3">
                                         <a href="{% url 'module' %}?code={{ data.module.code }}">{{ data.module.name }}</a>
                                     </span>
@@ -50,7 +50,7 @@
                                 </p>
                             
                         {% empty %}
-                            <p>Currently no modules.</p>
+                            <p class="text-start">Currently no modules.</p>
                         {% endfor %}
                     
                 </div>

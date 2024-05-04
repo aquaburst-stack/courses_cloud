@@ -454,18 +454,26 @@ form {
                 {% endif %}
                 <!-- Name -->
                 <div class="form-group position-relative my-3">
+                        <label for="formName" class="d-block">
+                                <i class="icon" data-feather="user"></i>
+                        </label>
+                        <input type="text" id="formName" name="name" class="form-control form-control-lg thick" placeholder="Name" required>
+                </div>
+
+                <!-- E-mail -->
+                <div class="form-group position-relative my-3">
+                        <label for="formEmail" class="d-block">
+                                <i class="icon" data-feather="mail"></i>
+                        </label>
+                        <input type="email" id="formEmail" name="email" class="form-control form-control-lg thick" placeholder="E-mail" required>
+                </div>
+
+                <!-- Subject -->
+                <div class="form-group position-relative my-3">
                     <label for="formName" class="d-block">
                         <i class="icon" data-feather="user"></i>
                     </label>
-                    <input type="text" id="formName" name="subject" class="form-control form-control-lg thick" placeholder="Subject">
-                </div>
-    
-                <!-- E-mail -->
-                <div class="form-group position-relative my-3">
-                    <label for="formEmail" class="d-block">
-                        <i class="icon" data-feather="mail"></i>
-                    </label>
-                    <input type="email" id="formEmail" name="email" class="form-control form-control-lg thick" placeholder="E-mail">
+                    <input type="text" id="formName" name="subject" class="form-control form-control-lg thick" placeholder="Subject" required>
                 </div>
     
                 <!-- Message -->
