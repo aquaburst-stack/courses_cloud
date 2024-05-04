@@ -13,6 +13,18 @@
 {% block body %}
     <div class="container">
 
+    {% if messages %}
+        <div>
+            {% for message in messages %}
+                {% if message %}
+                <div class="alert alert-danger" role="alert">
+                    {{ message }}
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    {% endif %}
+
         <!-- Header-->
         <header class="py-5">
             <div class="container px-lg-5">

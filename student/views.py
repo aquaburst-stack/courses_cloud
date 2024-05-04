@@ -6,6 +6,7 @@ from student.forms import LoginForm, StudentForm
 from student.models import Student, User
 from django.conf import settings
 import os
+from django.contrib import messages
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes, force_str
 from django.contrib.auth.tokens import default_token_generator
@@ -59,6 +60,7 @@ def profile(request):
         student = Student.objects.get(user__id=request.user.id)
         return render(request, 'student/profile.html', {'student': student})
     else:
+        messages.error(request, "You need to log in to view this page.")
         return redirect('home')
 
 
@@ -104,6 +106,7 @@ def edit_profile(request):
         student = Student.objects.get(user__id=request.user.id)
         return render(request, 'student/edit_profile.html', {'student': student})
     else:
+        messages.error(request, "You need to log in to view this page.")
         return redirect('home')
 
 

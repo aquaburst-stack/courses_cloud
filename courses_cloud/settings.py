@@ -28,7 +28,7 @@ SECRET_KEY = config('SECRET_KEY', cast=str)
 # DEBUG = os.getenv('DEBUG')
 DEBUG = config('DEBUG', cast=bool)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition

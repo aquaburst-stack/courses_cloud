@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 from module.models import Course, Module, Registration, ContactUs
 from student.models import Student
+from module.forms import SearchModules
 # Create your views here.
 
 def home(request):
@@ -27,6 +28,12 @@ def contact_us(request):
 
 
 def list_modules(request):
+    module_name = None
+    if 'module' in request.GET:
+        form = SearchModules(request.GET)
+        if form.is_valid():
+            module_name = form.cleaned_data['module']
+    form = SearchModules()
     code = request.GET.get('code', None)
     register = request.GET.get('register', None)
     is_registered, student = False, None
@@ -43,6 +50,8 @@ def list_modules(request):
                 Registration.objects.create(student=student, module=module)
             return redirect('list_modules')
     modules = Module.objects.all().order_by('-id')
+    if module_name:
+        modules = modules.filter(name__icontains=module_name)
     group, student = False, None
     if request.user.is_authenticated:
         student = Student.objects.get(user_id=request.user.id)
@@ -57,7 +66,7 @@ def list_modules(request):
 
     if request.user.is_authenticated and request.user.groups.filter(name='Student').exists():
         group = True
-    return render(request, 'module/list_modules.html', {'data_obj': data, 'group': group, 'student': student})
+    return render(request, 'module/list_modules.html', {'data_obj': data, 'group': group, 'student': student, 'form': form})
 
 
 # @login_required(login_url=reverse_lazy('login'))

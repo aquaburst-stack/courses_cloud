@@ -19,6 +19,19 @@
                 <h1 class="p-3 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3 text-center">
                     Modules
                 </h1>
+                {% if data_obj %}
+                    <form method="get">
+                        <div class="input-group mb-3">
+                            {% for field in form %}
+                                {{ field }}
+                            {% endfor %}
+                            <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="submit">Search</button>
+                            </div>
+                        </div>
+
+                    </form>
+                {% endif %}
                 <div>
                     
                         {% for data in data_obj %}
