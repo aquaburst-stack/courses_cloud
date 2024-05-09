@@ -14,8 +14,8 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-lg-5 col-md-7 col-sm-12 mx-auto mt-5">
-                <div class="border border-secondary-subtle rounded-3 p-3 my-3">
+            <div class="col-lg-8 col-md-8 col-sm-12 mx-auto mt-5">
+                <div class="border border-secondary-subtle rounded-3 p-3 my-3" style="box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;">
                     <h1 class="p-2 mt-4 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3 text-center">
                         Profile
                     </h1>
@@ -25,15 +25,15 @@
                     </div>
                 {% endif %}
                     <div class="px-4">
-                        <p><b>First Name:</b> {{ student.user.first_name }}</p>
-                        <p><b>Last Name:</b> {{ student.user.last_name }}</p>
-                        <p><b>Email:</b> {{ student.user.email }}</p>
-                        <p><b>Username:</b> {{ student.user.username }}</p>
-                        <p><b>Date of Birth:</b> {{ student.date_of_birth }}</p>
-                        <p><b>Address:</b> {{ student.address }}</p>
-                        <p><b>City/Town:</b> {{ student.city_town }}</p>
-                        <p><b>Country:</b> {{ student.country }}</p>
-                        <p>
+                        <p class="fs-5"><b>First Name:</b> {{ student.user.first_name }}</p>
+                        <p class="fs-5"><b>Last Name:</b> {{ student.user.last_name }}</p>
+                        <p class="fs-5"><b>Email:</b> {{ student.user.email }}</p>
+                        <p class="fs-5"><b>Username:</b> {{ student.user.username }}</p>
+                        <p class="fs-5"><b>Date of Birth:</b> {{ student.date_of_birth }}</p>
+                        <p class="fs-5"><b>Address:</b> {{ student.address }}</p>
+                        <p class="fs-5"><b>City/Town:</b> {{ student.city_town }}</p>
+                        <p class="fs-5"><b>Country:</b> {{ student.country }}</p>
+                        <p class="fs-5">
                             <b>Photo:</b>
                             <img src="{{ student.photo.url }}" width="250px" alt="student-picture" />
                         </p>

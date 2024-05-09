@@ -4,11 +4,17 @@ from django.urls import reverse_lazy
 from module.models import Course, Module, Registration, ContactUs
 from student.models import Student
 from module.forms import SearchModules
+from django.core.paginator import Paginator
+
 # Create your views here.
 
 def home(request):
     courses = Course.objects.all().order_by('-id')
-    return render(request, 'module/home.html', {'courses': courses})
+    paginated_courses = Paginator(courses, 3)
+    page_number = request.GET.get('page')
+    courses_page = paginated_courses.get_page(page_number)
+
+    return render(request, 'module/home.html', {'courses': courses_page})
 
 
 def about_us(request):

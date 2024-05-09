@@ -14,8 +14,8 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-lg-6 col-md-8 col-sm-12 mx-auto mt-5 text-center">
-            <div class="border border-secondary-subtle rounded-3 p-5 text-start">
+        <div class="col-lg-8 col-md-8 col-sm-12 mx-auto mt-5 text-center" style="box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;">
+            <div class="rounded-3 p-5 text-start">
                 <h1 class="p-3 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3 text-center">
                     Modules
                 </h1>
@@ -37,9 +37,12 @@
                         {% for data in data_obj %}
                             
                                 <p class="text-start">
-                                    <span class="mx-3">
-                                        <a href="{% url 'module' %}?code={{ data.module.code }}">{{ data.module.name }}</a>
-                                    </span>
+                                 
+
+                                            <span class="mx-3 p-1">
+                                                <a class="fs-5" href="{% url 'module' %}?code={{ data.module.code }}">{{ data.module.name }}</a>
+                                            </span>
+                                  
                                     
                                     {% if request.user.is_authenticated and group %}
                                         {% if data.status %}

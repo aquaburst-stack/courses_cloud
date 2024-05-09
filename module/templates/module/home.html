@@ -26,12 +26,16 @@
     {% endif %}
 
         <!-- Header-->
-        <header class="py-5">
-            <div class="container px-lg-5">
-                <div class="p-4 p-lg-5 bg-light rounded-3 text-center">
+        <header class="py-5" >
+            <div class="container px-lg-5" >
+                <div class="p-4 p-lg-5 bg-light rounded-3 text-center" style="box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
                     <div class="m-4 m-lg-5">
                         <h1 class="display-5 fw-bold">A warm welcome!</h1>
-                        <p class="fs-4">Praesent ac arcu pretium, iaculis nisi in, semper lacus. Fusce volutpat accumsan pretium. Nullam ultricies est vel imperdiet efficitur. Proin bibendum libero magna, nec posuere ipsum luctus vitae. Mauris blandit orci a rutrum laoreet. Duis iaculis ligula</p>
+                        <h1 class="display-5 fw-bold">Sheffield Hallam University</h1>
+                        <p class="fs-4">
+                            Sheffield Hallam University (SHU) is a public research university in Sheffield, South Yorkshire, England. The university is based on two sites; the City Campus is located in the city centre near Sheffield railway station, while the Collegiate Crescent Campus is about two miles away in the Broomhall Estate off Ecclesall Road in south-west Sheffield. A third campus at Brent Cross Town in the London Borough of Barnet is expected to open for the 2025–26 academic year.
+                        </p>
+                        <button type="button" class="btn btn-info fs-5" ><a href="https://www.shu.ac.uk/" class="fs-5" target="_blank" rel="noopener noreferrer"> View More </a></button>
                     </div>
                 </div>
             </div>
@@ -45,8 +49,8 @@
 
                     <div class="row gx-lg-5">
                         {% for course in courses %}
-                        <div class="col-lg-6 col-xxl-4 mb-5">
-                            <div class="card bg-light border-0 h-100">
+                        <div class="col-lg-6 col-xxl-4 mb-5" >
+                            <div class="card bg-light border-0 h-100" style="box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;">
                                 <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
                                     <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i class="bi bi-collection"></i></div>
                                     <h2 class="fs-4 fw-bold">
@@ -58,7 +62,45 @@
                             </div>
                         </div>
                         {% endfor %}
+
+                        <div>
+                            
+                            <div class="pagination">
+                               
+                            </div>
+                            
+
+                            <div class="pagination">
+                                <span class="step-links">
+                                    {% if courses.has_previous %}
+                                        <span class="btn btn-primary text-white">
+                                            <a class="text-white" href="?page=1">&laquo;</a>
+                                            <!-- <a href="?page={{ courses.previous_page_number }}">previous</a> -->
+                                        </span>
+                                    {% endif %}
+
+                                    {% for num in courses.paginator.page_range %}
+                                        {% if num == courses.number %}
+                                            <button class="btn btn-primary btn-small mx-1">{{ num }}</button>
+                                        {% else %}
+                                            <a href="?page={{ num }}" class="text-decoration-none mx-1">
+                                                <button class="btn btn-secondary btn-small ">{{ num }}</button>
+                                            </a>
+                                        {% endif %}
+                                    {% endfor %}
+                            
+                                    {% if courses.has_next %}
+                                        <span class="btn btn-primary text-white" >
+                                            <!-- <a href="?page={{ courses.next_page_number }}">next</a> -->
+                                            <a class="text-white" href="?page={{ courses.paginator.num_pages }}">&raquo;</a>
+                                        </span>
+                                    {% endif %}
+                                </span>
+                            </div>
+                        </div>
                     </div>
+
+
             </div>
         </section>
     </div>
