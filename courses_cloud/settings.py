@@ -28,8 +28,9 @@ SECRET_KEY = config('SECRET_KEY', cast=str)
 # DEBUG = os.getenv('DEBUG')
 DEBUG = config('DEBUG', cast=bool)
 
-ALLOWED_HOSTS = ["*"]
-
+ALLOWED_HOSTS = ['coursesapp-c1055512.azurewebsites.net']
+CSRF_TRUSTED_ORIGINS = 'https://coursesapp-c1055512.azurewebsites.net'
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # Application definition
 
