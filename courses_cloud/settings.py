@@ -27,7 +27,7 @@ SECRET_KEY = config('SECRET_KEY', cast=str)
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = os.getenv('DEBUG')
 DEBUG = config('DEBUG', cast=bool)
-ALLOWED_HOSTS = 'coursesapp-c1055512.azurewebsites.net'
+ALLOWED_HOSTS = ['coursesapp-c1055512.azurewebsites.net']
 CSRF_TRUSTED_ORIGINS = 'https://coursesapp-c1055512.azurewebsites.net'
 
 # Application definition
